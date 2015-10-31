@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel>
+<schema name="ked">
+</schema>
+
+<schema name="location">
+</schema>
+
+<database name="new_database" encoding="UTF8">
+</database>
+
+<table name="country" oids="false">
+	<schema name="location"/>
+	<position x="78" y="139"/>
+	<column name="id">
+		<type name="serial" spatial-type="POINT" variation="0"/>
+	</column>
+	<column name="city_id" default-value="null">
+		<type name="integer" spatial-type="POINT" variation="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="64" spatial-type="POINT" variation="0"/>
+	</column>
+	<constraint name="pk__country" type="pk-constr" factor="10" table="location.country">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="region" oids="true">
+	<schema name="location"/>
+	<position x="345" y="276"/>
+	<column name="id">
+		<type name="serial" spatial-type="POINT" variation="0"/>
+	</column>
+	<column name="country_id">
+		<type name="integer" spatial-type="POINT" variation="0"/>
+	</column>
+	<column name="city_id" default-value="null">
+		<type name="integer" spatial-type="POINT" variation="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="64" spatial-type="POINT" variation="0"/>
+	</column>
+	<constraint name="pk_region" type="pk-constr" factor="10" table="location.region">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="city" oids="false">
+	<schema name="location"/>
+	<position x="660" y="139"/>
+	<column name="id">
+		<type name="serial" spatial-type="POINT" variation="0"/>
+	</column>
+	<column name="country_id">
+		<type name="integer" spatial-type="POINT" variation="0"/>
+	</column>
+	<column name="region_id">
+		<type name="integer" spatial-type="POINT" variation="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="64" spatial-type="POINT" variation="0"/>
+	</column>
+	<constraint name="pk__city" type="pk-constr" factor="10" table="location.city">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="fk__country_id" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="location.country" table="location.region">
+	<columns names="country_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+<relationship name="rel_region_country"
+	 type="relfk"
+	 src-required="false" dst-required="false"
+	 src-table="location.region"
+	 dst-table="location.country"/>
+
+<constraint name="fk__country_id" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="location.country" table="location.city">
+	<columns names="country_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+<relationship name="rel_city_country"
+	 type="relfk"
+	 src-required="false" dst-required="false"
+	 src-table="location.city"
+	 dst-table="location.country"/>
+
+<constraint name="fk__region_id" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="location.region" table="location.city">
+	<columns names="region_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+<relationship name="rel_city_region"
+	 type="relfk"
+	 src-required="false" dst-required="false"
+	 src-table="location.city"
+	 dst-table="location.region"/>
+
+</dbmodel>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE metaconfiguration SYSTEM "meta.dtd">
+<metaconfiguration>
+    <!--  request-->
+    <include file="request/base-request.xml"/>
+    <include file="request/signin-request.xml"/>
+    <include file="request/registration.xml"/>
+
+
+
+    <!-- scheme Users -->
+    <include file="users/waiting_registration.xml"/>
+    <include file="users/user.xml"/>
+</metaconfiguration>

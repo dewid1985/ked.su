@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE metaconfiguration SYSTEM "meta.dtd">
+<metaconfiguration>
+    <classes>
+        <class name="SignInRequest" extends="BaseRequest">
+            <properties>
+                <property name="email" type="String" required="true" size="128"/>
+                <property name="password" type="String" required="true" size="64"/>
+            </properties>
+            <pattern name="ValueObject"/>
+        </class>
+    </classes>
+</metaconfiguration>

@@ -1,0 +1,57 @@
+ALTER TABLE "location"."city" ALTER COLUMN "id" TYPE BIGINT;
+ALTER TABLE "location"."city" ALTER COLUMN "country_id" TYPE BIGINT;
+ALTER TABLE "location"."city" ALTER COLUMN "country_id" DROP NOT NULL;
+ALTER TABLE "location"."city" ALTER COLUMN "region_id" TYPE BIGINT;
+ALTER TABLE "location"."city" ALTER COLUMN "region_id" DROP NOT NULL;
+ALTER TABLE "location"."city" ALTER COLUMN "name" TYPE TEXT;
+ALTER TABLE "location"."city" ALTER COLUMN "name" DROP NOT NULL;
+
+ALTER TABLE "location"."country" ALTER COLUMN "id" TYPE BIGINT;
+ALTER TABLE "location"."country" ALTER COLUMN "name" TYPE TEXT;
+ALTER TABLE "location"."country" ALTER COLUMN "name" DROP NOT NULL;
+
+ALTER TABLE "location"."region" ALTER COLUMN "id" TYPE BIGINT;
+ALTER TABLE "location"."region" ALTER COLUMN "country_id" TYPE BIGINT;
+ALTER TABLE "location"."region" ALTER COLUMN "country_id" DROP NOT NULL;
+ALTER TABLE "location"."region" ALTER COLUMN "name" TYPE TEXT;
+ALTER TABLE "location"."region" ALTER COLUMN "name" DROP NOT NULL;
+
+ALTER TABLE "companies"."company" ALTER COLUMN "id" TYPE BIGINT;
+ALTER TABLE "companies"."company" ALTER COLUMN "name" SET NOT NULL;
+ALTER TABLE "companies"."company" DROP COLUMN "company_phone";
+ALTER TABLE "companies"."company" ALTER COLUMN "opf_company_id" TYPE BIGINT;
+ALTER TABLE "companies"."company" ALTER COLUMN "opf_company_id" SET NOT NULL;
+ALTER TABLE "companies"."company" ALTER COLUMN "worker_count_id" TYPE BIGINT;
+ALTER TABLE "companies"."company" ALTER COLUMN "worker_count_id" SET NOT NULL;
+ALTER TABLE "companies"."company" ALTER COLUMN "city_id" TYPE BIGINT;
+ALTER TABLE "companies"."company" ALTER COLUMN "city_id" SET NOT NULL;
+ALTER TABLE "companies"."company" ALTER COLUMN "company_type_id" TYPE BIGINT;
+ALTER TABLE "companies"."company" ALTER COLUMN "company_type_id" SET NOT NULL;
+
+ALTER TABLE "companies"."company_type" ALTER COLUMN "id" TYPE BIGINT;
+ALTER TABLE "companies"."company_type" ALTER COLUMN "name" SET NOT NULL;
+ALTER TABLE "companies"."company_type" ALTER COLUMN "description" SET NOT NULL;
+
+ALTER TABLE "companies"."company_opf" ALTER COLUMN "id" TYPE BIGINT;
+ALTER TABLE "companies"."company_opf" ALTER COLUMN "name" SET NOT NULL;
+ALTER TABLE "companies"."company_opf" ALTER COLUMN "description" SET NOT NULL;
+
+ALTER TABLE "companies"."worker_count" ALTER COLUMN "id" TYPE BIGINT;
+ALTER TABLE "companies"."worker_count" ALTER COLUMN "name" SET NOT NULL;
+
+ALTER TABLE "users"."role" ALTER COLUMN "id" TYPE BIGINT;
+ALTER TABLE "users"."role" ADD COLUMN "role" TEXT NULL;
+
+ALTER TABLE "users"."role_dimension" ALTER COLUMN "id" TYPE BIGINT;
+ALTER TABLE "users"."role_dimension" ALTER COLUMN "role_id" TYPE BIGINT;
+ALTER TABLE "users"."role_dimension" ALTER COLUMN "user_id" TYPE BIGINT;
+
+ALTER TABLE "users"."user" ALTER COLUMN "id" TYPE BIGINT;
+ALTER TABLE "users"."user" ALTER COLUMN "type_authorization_id" DROP NOT NULL;
+ALTER TABLE "users"."user" ALTER COLUMN "token" DROP NOT NULL;
+ALTER TABLE "users"."user" ALTER COLUMN "password" DROP NOT NULL;
+
+ALTER TABLE "users"."user_data" ALTER COLUMN "id" TYPE BIGINT;
+ALTER TABLE "users"."user_data" ALTER COLUMN "user_id" TYPE BIGINT;
+ALTER TABLE "users"."user_data" ALTER COLUMN "user_id" DROP NOT NULL;
+ALTER TABLE "users"."user_data" ALTER COLUMN "phone" DROP NOT NULL;
